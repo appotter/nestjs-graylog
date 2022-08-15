@@ -1,10 +1,15 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { GRAYLOG_CONFIGURATION } from './constants';
+import { GraylogService } from './graylog.service';
 import { Options, OptionsAsync } from './interfaces';
 
 @Module({})
 export class GraylogModule {
-  public static register(config: Options): DynamicModule {
+  public static register(config?: Options): DynamicModule {
+    if (config.servers === undefined) {
+      config = { servers: [{ host: '127.0.0.1', port: 12201 }] };
+    }
+
     return {
       module: GraylogModule,
       providers: [
@@ -12,8 +17,9 @@ export class GraylogModule {
           provide: GRAYLOG_CONFIGURATION,
           useValue: config,
         },
+        GraylogService,
       ],
-      exports: [GRAYLOG_CONFIGURATION],
+      exports: [GRAYLOG_CONFIGURATION, GraylogService],
     };
   }
 
@@ -23,8 +29,8 @@ export class GraylogModule {
     return {
       module: GraylogModule,
       imports: config.imports || [],
-      providers: [this.createAsyncProviders(config)],
-      exports: [GRAYLOG_CONFIGURATION],
+      providers: [this.createAsyncProviders(config), GraylogService],
+      exports: [GRAYLOG_CONFIGURATION, GraylogService],
     };
   }
 
