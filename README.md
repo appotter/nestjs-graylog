@@ -33,9 +33,9 @@ import { GraylogModule, GraylogService } from 'nestjs-graylog';
   imports: [
     GraylogModule.register({
       serviers: [
-        { host: 127.0.0.1; port: 12201 }
+        { host: '127.0.0.1', port: 12201 }
       ],
-      hostname: 'hostname'// optional, default: os.hostname()
+      hostname: 'hostname',// optional, default: os.hostname()
       facility: 'Node.js',// optional, default: Node.js
       bufferSize: 1400,// optional, default: 1400
     }),
@@ -61,7 +61,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         servers: [
           {
             host: configService.get('GRAYLOG_HOST'),
-            port: configService.get('GRAYLOG_PORT'),
+            port: +configService.get('GRAYLOG_PORT'),
           },
         ],
         facility: configService.get('GRAYLOG_FACILITY'),
