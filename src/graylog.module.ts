@@ -6,7 +6,7 @@ import { Options, OptionsAsync } from './interfaces';
 @Module({})
 export class GraylogModule {
   public static register(config?: Options): DynamicModule {
-    if (config.servers === undefined) {
+    if (config === undefined) {
       config = { servers: [{ host: '127.0.0.1', port: 12201 }] };
     }
 
