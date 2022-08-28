@@ -9,17 +9,12 @@ const configService = new ConfigService(dotenv.config());
 
 describe('GraylogService', () => {
   let service: GraylogService;
-  let fakeService: Partial<GraylogService>;
   let host: string;
   let port: number;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     host = configService.get<string>('GRAYLOG_HOST');
     port = +configService.get<number>('GRAYLOG_PORT');
-
-    fakeService = {
-      emergency: jest.fn(),
-    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -29,10 +24,7 @@ describe('GraylogService', () => {
             servers: [{ host, port }],
           } as Options,
         },
-        {
-          provide: GraylogService,
-          useValue: fakeService,
-        },
+        GraylogService,
       ],
     }).compile();
 
@@ -44,8 +36,15 @@ describe('GraylogService', () => {
   });
 
   it('log emergency', async () => {
+    jest.spyOn(service, 'emergency').mockReturnValue(undefined);
     const logged = await service.emergency('test');
 
     expect(logged).toBeUndefined();
+  });
+
+  it('call getClient should be object', async () => {
+    const client = await service.getClient();
+
+    expect(typeof client === 'object').toBeTruthy();
   });
 });
