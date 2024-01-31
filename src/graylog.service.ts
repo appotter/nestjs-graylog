@@ -13,58 +13,58 @@ export class GraylogService implements OnApplicationShutdown {
 
   async emergency(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.emergency(message, null, additionals);
+    await this.graylog.emergency(message, null, additionalFields);
   }
 
   async alert(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.alert(message, null, additionals);
+    await this.graylog.alert(message, null, additionalFields);
   }
 
   async critical(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.critical(message, null, additionals);
+    await this.graylog.critical(message, null, additionalFields);
   }
 
   async error(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.error(message, null, additionals);
+    await this.graylog.error(message, null, additionalFields);
   }
 
   async warning(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.warning(message, null, additionals);
+    await this.graylog.warning(message, null, additionalFields);
   }
 
   async notice(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.notice(message, null, additionals);
+    await this.graylog.notice(message, null, additionalFields);
   }
 
   async info(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.info(message, null, additionals);
+    await this.graylog.info(message, null, additionalFields);
   }
 
   async debug(
     message: string,
-    additionals?: Record<string, any>,
+    additionalFields?: Record<string, any>,
   ): Promise<void> {
-    await this.graylog.debug(message, null, additionals);
+    await this.graylog.debug(message, null, additionalFields);
   }
 
   getClient(): graylog2 {
