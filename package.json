@@ -1,6 +1,6 @@
 {
   "name": "nestjs-graylog",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "NestJS provider to integrates with Graylog",
   "author": "Phitsanu Chuamuangphan <ap.phitsanu@gmail.com, contact@phitsanu.ch>",
   "license": "MIT",
