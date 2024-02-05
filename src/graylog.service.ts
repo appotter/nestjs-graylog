@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnApplicationShutdown } from '@nestjs/common';
 import { GRAYLOG_CONFIGURATION } from './constants';
 import { Options } from './interfaces';
-import graylog2 = require('graylog2');
+import graylog2 from 'graylog2';
 
 @Injectable()
 export class GraylogService implements OnApplicationShutdown {
