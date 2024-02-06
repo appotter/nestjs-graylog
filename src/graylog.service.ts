@@ -1,11 +1,11 @@
 import { Inject, Injectable, OnApplicationShutdown } from '@nestjs/common';
 import { GRAYLOG_CONFIGURATION } from './constants';
 import { Options } from './interfaces';
-import graylog2 from 'graylog2';
+import * as graylog2 from 'graylog2';
 
 @Injectable()
 export class GraylogService implements OnApplicationShutdown {
-  private readonly graylog: graylog2;
+  private readonly graylog: typeof graylog2;
 
   constructor(@Inject(GRAYLOG_CONFIGURATION) private config: Options) {
     this.graylog = new graylog2.graylog(config);
@@ -67,7 +67,7 @@ export class GraylogService implements OnApplicationShutdown {
     await this.graylog.debug(message, null, additionalFields);
   }
 
-  getClient(): graylog2 {
+  getClient(): typeof graylog2 {
     return this.graylog;
   }
 
